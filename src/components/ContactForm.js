@@ -1,6 +1,8 @@
-import React, {useState} from 'react'
-import styled from 'styled-components'
-import emailjs from 'emailjs-com'
+import { useEffect, useRef, useState } from "react";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+import styled from "styled-components";
+import Captcha from "./Captcha";
+import axios from "axios";
 
 const FormStyles = styled.div`
   width: 100%;
@@ -44,49 +46,128 @@ const FormStyles = styled.div`
 `;
 
 function ContactForm() {
-    const [name, setname] = useState('')
-    const [email, setEmail] = useState('')
-    const [message, setMessage] = useState('')
-    const [sent, setSent] = useState(false)
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [location, setLocation] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState("");
 
-    function sendEmail(e) {
-      e.preventDefault()
+  const [token, setToken] = useState(null);
+  const captchaRef = useRef(null);
 
-      emailjs.sendForm(
-        "service_ibbgc9v",
-        "template_aqpnmjc",
-        e.target,
-        "user_Mma9RqfBK6lMSH5vZ5C4R"
-      ).then(res =>{
-        setSent(true)
-      }).catch(err=> console.log(err))
+  const handleRequest = async (e) => {
+    if (email && name && location && message !== "") {
+      e.preventDefault();
+      setLoading(true);
+      // console.log({email, message, name, subject, company})
+
+      const body = { email, message, name, location };
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/api/contact/",
+          body,
+          { headers: { "Content-type": "application/json" } }
+        );
+
+        setSent(res.data.status);
+        setLoading(false);
+        console.log(res);
+        setEmail("");
+        setName("");
+        setLocation("");
+        setMessage("");
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    } else {
+      alert("Please fill all required form");
     }
-    return (
-        <FormStyles>
-            <form onSubmit={sendEmail}>
-                <div className="form-group">
-                  <label style={{color: "#fff"}} htmlFor="name">Your name
-                  <input type="text" id="name" name="name" value={name} onChange={(e)=> setname(e.target.value)} />
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label style={{color: "#fff"}} htmlFor="email">Your email
-                  <input type="text" id="email" name="email" email="email" value={email} onChange={(e)=> setEmail(e.target.value)} />
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label style={{color: "#fff"}} htmlFor="message">Your message
-                  <textarea type="text" id="message" name="message" message="message" value={message} onChange={(e)=> setMessage(e.target.value)} />
-                  </label>
-                </div>
-                <div className="btnWrapper">
-                <button type="submit">Send</button>
-                {sent ? <h3 className="text-success text-capitalize mt-3">Sent Successfully!</h3> : null}
+  };
 
-                </div>
-            </form>
-        </FormStyles>
-    )
+  const onLoad = () => {
+    // this reaches out to the hCaptcha JS API and runs the
+    // execute function on it. you can use other functions as
+    // documented here:
+    // https://docs.hcaptcha.com/configuration#jsapi
+    captchaRef.current.execute();
+  };
+
+  useEffect(() => {
+    if (token) console.log(`hCaptcha Token: ${token}`);
+  }, [token]);
+
+  return (
+    <FormStyles>
+      <form onSubmit={handleRequest}>
+        <div className="form-group">
+          <label style={{ color: "#fff" }} htmlFor="name">
+            Your name
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="form-group">
+          <label style={{ color: "#fff" }} htmlFor="location">
+            Your location
+            <input
+              type="text"
+              id="location"
+              name="location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="form-group">
+          <label style={{ color: "#fff" }} htmlFor="email">
+            Your email
+            <input
+              type="text"
+              id="email"
+              name="email"
+              email="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="form-group">
+          <label style={{ color: "#fff" }} htmlFor="message">
+            Your message
+            <textarea
+              type="text"
+              id="message"
+              name="message"
+              message="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="btnWrapper">
+          <button type="submit" disabled={!token}>
+            {loading ? "Sending..." : "Send"}
+          </button>
+          <h3 className="text-success text-capitalize mt-3">{sent}</h3>
+        </div>
+        <HCaptcha
+          sitekey={process.env.REACT_APP_CAPTCHA_PUBLIC_KEY}
+          onLoad={onLoad}
+          onVerify={setToken}
+          ref={captchaRef}
+          theme="dark"
+          size="normal"
+        />
+      </form>
+    </FormStyles>
+  );
 }
 
-export default ContactForm
+export default ContactForm;

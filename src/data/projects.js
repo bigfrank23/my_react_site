@@ -14,8 +14,16 @@ import Nemo from '../nemo.jpeg'
 import Css from '../css2.png'
 import Bubble from '../bubble.jpeg'
 import Chatapp from '../chatapp.jpeg'
+import PFN from '../pff.PNG'
 
 const projects = [
+  {
+    id: uuidv4(),
+    name: "Pentecostal Fellowship of Nigeria, Lagos State",
+    desc: "Built with MERN Stack for the Church Organization",
+    img: PFN,
+    lan: "#react #node #express #mongo #cloudinary #heroku(free)",
+  },
   {
     id: uuidv4(),
     name: "Chat App",
@@ -53,8 +61,8 @@ const projects = [
   },
   {
     id: uuidv4(),
-    name: "Visual Programming",
-    desc: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, cupiditate",
+    name: "No/low Code App",
+    desc: "Simpe Ecommerce design built with Bubble.io",
     img: Bubble,
     lan: "#bubble",
   },

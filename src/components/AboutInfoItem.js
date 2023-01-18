@@ -9,14 +9,15 @@ const AboutItemStyles = styled.div`
   margin-top: 3rem;
   position: relative;
   .title {
-    font-size: 2.4rem;
+    font-size: 1.4rem;
     color: #fff;
   }
   .items {
     display: flex;
-    gap: 1.5rem;
-    position: absolute;
-    left: 18rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    position: relative;
+    left: 1rem;
   }
   .item {
     background-color: #221d1c;
@@ -33,7 +34,7 @@ const AboutItemStyles = styled.div`
       gap: 1rem;
     }
     .title {
-      font-size: 2rem;
+      font-size: 1rem;
       font-family: Poppins, sans-serif;
     }
     .item {
@@ -64,7 +65,7 @@ function AboutInfoItem({
         <div className="items">
           {items.map((item, index) => (
             <div className="item" key={index}>
-              <PText>{item}</PText>
+              <p style={{color: '#fff'}}>{item}</p>
             </div>
           ))}
         </div>

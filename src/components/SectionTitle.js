@@ -35,7 +35,7 @@ const SectionTitleStyle = styled.div`
   }
 `;
 
-function SectionTitle({subheading = "This is subheading", heading = "This is heading"}) {
+function SectionTitle({subheading = "This is subheading", heading}) {
     return (
         <SectionTitleStyle className="section-title">
           <div class="container-fluid">

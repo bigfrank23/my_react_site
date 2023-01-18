@@ -7,13 +7,22 @@ const ServicesItemStyles = styled.div`
   padding: 0;
   .services__allItems {
     display: flex;
-    gap: 5rem;
-    justify-content: space-between;
-    margin-top: 5rem;
+    gap: 3rem;
+    justify-content: center;
+    margin-top: 2rem;
     padding-right: 50px;
+    padding-top: 12px;
     padding-left: 50px;
     background: linear-gradient(to left, #1a1a1a, #333);
   }
+  @media only screen and (max-width: 998px) {
+    padding: 0;
+    .services__allItems {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
   @media only screen and (max-width: 768px) {
     padding: 0;
     .services__allItems {
@@ -55,9 +64,9 @@ function ServiceSection() {
                 />
               }
               title="Game development"
-              desc="For gamers, if you have a game idea you wish to have for yoursels or sell
+              desc="For gamers, if you have a game idea you wish to have for yourself or sell
               hit the contact button now. Meanwhile, I can train your kids on how
-              to code by building simple games of thier choice now!"
+              to code by building simple games of their choice now!"
             />
             <ServicesSectionItem
               icon={
@@ -67,7 +76,7 @@ function ServiceSection() {
                 />
               }
               title="Mobile app development"
-              desc="Mobile app development(with react native, ionic) coming pretty soon..."
+              desc="Mobile app development with Ionic. (React native coming pretty soon...)"
             />
           </div>
         </div>

@@ -56,7 +56,7 @@ function TestimonialsSec() {
             <Carousel interval={1000}>
               {testimonials.map((data, index) => {
                 return (
-                  <Carousel.Item interval={5000}>
+                  <Carousel.Item interval={5000} key={index}>
                     <div className="testimonial__info">
                       <div className="testimonial__desc">
                         <PText>{data.desc}</PText>

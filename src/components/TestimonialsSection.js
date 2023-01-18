@@ -109,7 +109,7 @@ function TestimonialsSection() {
         <div className="container">
           <SectionTitle
             heading="Testimonials"
-            subheading="see what our clients say about us"
+            subheading="see what my clients say about me"
           />
           <div className="testimonial__wrapper">
             <SwitchTransition component={null}>

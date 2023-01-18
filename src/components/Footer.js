@@ -42,6 +42,7 @@ const FooterStyles = styled.div`
       padding: 4rem;
       & > div {
         margin-top: 5rem;
+        text-align: center;
       }
     }
     .footer__col1 .para {
@@ -70,9 +71,7 @@ function Footer() {
           <div className="footer__col1">
             <h1 className="footer__col1__title">Franklin Ezeyim</h1>
             <PText>
-              A freelance web developer from Lagos, Nigeria. I always make
-              websites that have unique designs and good performance rate as
-              well
+              A software/web developer from Lagos, Nigeria.
             </PText>
           </div>
           <div className="footer__col3">
@@ -98,13 +97,13 @@ function Footer() {
             <FooterCol
               heading="Social Links"
               links={[
-                {
-                  title: "Twitter",
-                  path: "https://twitter.com/big_frank93?s=09",
-                },
+                // {
+                //   title: "Twitter",
+                //   path: "https://twitter.com/big_frank93?s=09",
+                // },
                 {
                   title: "Linkedin",
-                  path: "https://www.linkedin.com/in/franklin-ezeyim-5694051a6/",
+                  path: "https://www.linkedin.com/in/franklin-ezeyim/",
                 },
                 {
                   title: "WhatsApp",

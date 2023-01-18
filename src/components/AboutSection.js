@@ -7,21 +7,14 @@ import styled from 'styled-components'
 
 const AboutSectionStyle = styled.div`
   padding: 10rem;
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: left;
-  }
+  display: flex;
   .aboutSection__left,
   .aboutSection__right {
     flex: 1;
   }
   .aboutSection__right {
     margin-left: 50px;
-  }
-  .section-title {
-    text-align: left;
+    /* height: 450px; */
   }
   .para {
     margin-top: 2rem;
@@ -35,41 +28,40 @@ const AboutSectionStyle = styled.div`
     gap: 2rem;
     margin-top: 2rem;
   }
-  @media only screen and (max-width: 950px) {
-    .aboutSection__left {
+  @media only screen and (max-width: 996px) {
+    display: block;
+    /* .aboutSection__left {
       flex: 4;
-    }
+    } */
     .aboutSection__right {
-      flex: 3;
+      display: none;
+      /* flex: 3;
       img {
         margin-left: 30px;
         display: block;
-      }
+      } */
+    }
+    .para {
+      text-align: center;
+      margin: 1rem auto;
+    }
+    .aboutSection__button {
+      justify-content: center;
     }
   }
   @media only screen and (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      text-align: center;
-    }
-    .aboutSection__left,
-    .aboutSection__right {
+    display: block;
+    padding: 10rem 2rem;
+    .aboutSection__left {
       width: 100%;
     }
     .aboutSection__right {
-      margin-top: 2rem;
-      margin-left: 0;
-      img {
-        display: none;
-      }
-    }
-    .section-title {
-      text-align: center;
+      display: none;
     }
     .para {
       margin: 0 auto;
       margin-top: 2rem;
-      width: 250px;
+      /* width: 250px; */
       padding: 5px;
     }
     .aboutSection__button {
@@ -86,30 +78,37 @@ const AboutSectionStyle = styled.div`
 
 function AboutSection() {
     return (
-        <AboutSectionStyle>
-            <div className="container">
-              <div className="row">
-                <div className="aboutSection__left">
-                    <SectionTitle 
-                    subheading = "Let me introduce myself"
-                    heading= "About me"
-                     />
-                     <PText>
-                    I'm Franklin Ezeyim. I web developer. I do front end jobs, back end jobs and I also enjoying building games. 
-                    I must say programming is fun especially when you love Javascript...
-                     </PText>
-                     <div className="aboutSection__button">
-                        <Button btnLinks= "contact" btnText= "Contact" />
-                        <Button btnLinks= "about" btnText= "Read More"  outline />
-                     </div>
-                </div>
-                <div className="aboutSection__right">
-                    <img src={AboutImg} alt="profile image" style={{width: "100%"}} className="rounded" />
-                </div>
-            </div>
-            </div>
-        </AboutSectionStyle>
-    )
+      <AboutSectionStyle>
+        <div className="aboutSection__left">
+          <SectionTitle
+            subheading="Let me introduce myself"
+            heading="About me"
+          />
+          <PText>
+            I'm a software/web developer with the major aim of solving problem via the developing
+            applications. 
+            {/* I do front end jobs, back
+            end jobs and I also enjoying building games. I must say programming
+            is fun especially when you love Javascript... */}
+          </PText>
+          <div className="aboutSection__button">
+            <Button btnLinks="about" btnText="Read More" outline />
+            <Button btnLinks="contact" btnText="Contact" />
+          </div>
+        </div>
+        <div className="aboutSection__right">
+          <img
+            src={AboutImg}
+            alt="profile img"
+            style={{
+              width: "100%",
+              height: "80%",
+              boxShadow: "10px 10px 0px 4px #f0725c",
+            }}
+          />
+        </div>
+      </AboutSectionStyle>
+    );
 }
 
 export default AboutSection

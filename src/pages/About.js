@@ -102,21 +102,33 @@ function About() {
             <p className="about__subheading">
               Hi, I'm <span>Franklin Ezeyim</span>
             </p>
-            <h2 className="about__heading">A freelance developer</h2>
+            <h2 className="about__heading">A Software/Web Developer</h2>
             <div className="about__info">
               <PText>
-                I'm a full-stack developer located in
-                Lagos, Nigeria. Very passionate in creativity, effects and
-                animation.
+                I'm a full-stack developer with over 3years of experience. Very
+                passionate in developing website and apps.
+                <p>
+                  My career kick started immediately after my internship. I got
+                  an actual job where I worked as the full stack developer,
+                  digital marker and was the team lead
+                </p>
+                <p>
+                  I helped deliver the company's toughest project back then and
+                  got promoted
+                </p>
+                <p>
+                  I'm open to opportunities where I can leverage my skills and
+                  experience while I help deliever beauty
+                </p>
                 <p>
                   I'm a fan of sports(most epecially football), music, movies,
                   video games and entertainment. I love to research,
                   technologies. I love being around positive people.
                 </p>
-                I love coding and always do my best to get results. I love
-                building games, making interactive apps etc. Languages I speak
-                mostly among others are HTML, CSS, JavaScript, React js, Node
-                js. <p>I get jobs done!</p>
+                {/* I love coding and always do my best to get results. I love
+                building games, making interactive apps etc. 
+                Languages I speak mostly among others are HTML, CSS, JavaScript, React js, Node js.  */}
+                <p>I get jobs done! I mean, what's the point???</p>
               </PText>
             </div>
             <div
@@ -125,12 +137,15 @@ function About() {
               onClick={handleClick}
             >
               <div className="wrapp">
-              <Button btnText="Download CV" btnLinks="#" />
-              <div className="text-center">
-              {showResults ? <small className="text-danger text-capitalize">Not available for download at this time!</small> : null}
-
+                <Button btnText="Download CV" btnLinks="#" />
+                <div className="text-center">
+                  {showResults ? (
+                    <small className="text-danger text-capitalize">
+                      Not available for download at this time!
+                    </small>
+                  ) : null}
+                </div>
               </div>
-            </div>
             </div>
           </div>
           <div className="right">
@@ -145,9 +160,22 @@ function About() {
           </div>
           <div className="about__info__item">
             <h1 className="about__info__heading"> My Skills </h1>
+            <AboutInfoItem title="Languages" items={["Javascript", "C#"]} />
             <AboutInfoItem
               title="Front-End"
-              items={["HTML", "CSS", "JS", "REACT"]}
+              items={[
+                "HTML",
+                "CSS",
+                "Bootstrap",
+                "Tailwind",
+                "MUI",
+                "EJS",
+                "JS",
+                "Redux",
+                "Context API",
+                "REACT",
+                "NEXT JS",
+              ]}
             />
             <AboutInfoItem
               title="Back-End"
@@ -158,17 +186,35 @@ function About() {
               items={["JavaScript", "Scratch", "Unity"]}
             />
             <AboutInfoItem
-              title="CMS"
-              items={["Word-press"]}
+              title="No Code Programming"
+              items={["Bubble", "Adaolo", "Glide"]}
+            />
+            <AboutInfoItem title="Mobile" items={["Ionic-React"]} />
+            <AboutInfoItem title="CMS" items={["Word-press"]} />
+            <AboutInfoItem
+              title="Tools"
+              items={[
+                "Git",
+                "Redux",
+                "React-Hooks",
+                "React-query",
+                "Socket.io",
+                "Graph ql",
+                "Sanity IO",
+              ]}
             />
           </div>
           <div className="about__info__item">
-            <h1 className="about__info__heading"> Experiences </h1>
+            <h1 className="about__info__heading"> Experience </h1>
+            <AboutInfoItem title="2020" items={["Junior Front-End Developer"]} />
             <AboutInfoItem
-              title="2020"
-              items={["Junior developer"]}
+              title="2021"
+              items={["Mid Developer & Scratch Tutor"]}
             />
-            <AboutInfoItem title="2021" items={["Scratch tutor"]} />
+            <AboutInfoItem
+              title="2022 - Till Date"
+              items={["Lead FullStack Developer"]}
+            />
           </div>
         </div>
       </div>

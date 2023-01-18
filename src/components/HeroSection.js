@@ -1,14 +1,23 @@
 import React from 'react'
 import profileImg from '../me2.png'
+import likeImg from '../like.png'
+import call from '../call.png'
+import call2 from '../call2.png'
+import expert from '../expert.png'
 import PText from './PText'
 import Button from '../components/Button'
 import styled from 'styled-components'
+import { Box, Typography } from "@mui/material";
+import { useState } from 'react'
+import axios from 'axios'
+import { useEffect } from 'react'
+import Carousel from 'nuka-carousel';
 
 
 const HeroStyles = styled.div`
   .hero__heading {
     font-size: 2rem;
-    margin-top: 5.5rem;
+    margin-top: 10.5rem;
     span {
       display: inline-block;
       width: 100%;
@@ -19,7 +28,8 @@ const HeroStyles = styled.div`
       font-size: clamp(30px, 20vw, 7rem);
       color: #fff;
       font-family: Poppins, sans-serif;
-      font-weight: bold;
+      font-weight: bold !important;
+      margin: 0;
     }
   }
   .hero__image{
@@ -31,6 +41,7 @@ const HeroStyles = styled.div`
   }
   .hero__info{
       margin-top: -13rem;
+      text-align: center;
   }
   .hero__social,
   .hero__scrollDown{
@@ -62,7 +73,7 @@ const HeroStyles = styled.div`
       imgk{
           max-height: 45px;
           width: 16px;
-          margin 0 auto;
+          margin: 0 auto;
           object-fit: contain;
       }
   }
@@ -121,9 +132,10 @@ const HeroStyles = styled.div`
     .hero__info{
       margin-top: -11rem;
   }
-  }
+}
+}
   
-`;
+`
 
 function HeroSection() {
   const date = new Date();
@@ -137,6 +149,33 @@ function HeroSection() {
   } else {
     timeOfDay = "Evening";
   }
+
+  ////////////
+  const [like, setLike] = useState([])
+  const [hideBtn, setHideBtn] = useState(false)
+
+  const handleClick = async() => {
+    const res = await axios.post("http://localhost:5000/api/likes/");
+    try {
+      // setLike(res.data.likeResult)
+      console.log(res.data);
+      setHideBtn(true)
+      localStorage.setItem('liked', true)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  useEffect(()=> {
+    const getLikes = async() => {
+      const res = await axios.get("http://localhost:5000/api/likes/");
+      // setLike(res.data.likeRes)
+      setLike(Object.values(res.data).map(a=> a.likes));
+      // console.log(Object.values(res.data).map(a=> a.likes));
+    }
+    getLikes()
+  }, [like])
+
     return (
       <HeroStyles>
         <div class="container-fluid">
@@ -180,37 +219,144 @@ function HeroSection() {
               </div>
             </div>
             <div className=" col-10 col-xs-10 col-md-6 col-lg-6 col-md-offset-3 p p-0">
+              <Box
+                sx={{
+                  marginTop: "10.5rem",
+                  color: "#fff",
+                  position: "absolute",
+                  right: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                {hideBtn || localStorage.getItem("liked") ? (
+                  <>
+                    <Box
+                      component="img"
+                      loading="lazy"
+                      src={likeImg}
+                      sx={{
+                        mixBlendMode: "luminosity",
+                        width: "35px",
+                        height: "35px",
+                        userSelect: "none",
+                      }}
+                    />
+                    <Typography
+                      variant="h6"
+                      marginBlock="-5px"
+                      fontSize=".8rem"
+                      textAlign="right"
+                    >
+                      {like}
+                    </Typography>
+                  </>
+                ) : (
+                  <>
+                    <Box
+                      onClick={handleClick}
+                      component="img"
+                      src={likeImg}
+                      sx={{
+                        width: "35px",
+                        height: "35px",
+                        cursor: "pointer",
+                      }}
+                    />
+                    <Typography
+                      variant="h6"
+                      marginBlock="-5px"
+                      fontSize=".8rem"
+                      textAlign="right"
+                    >
+                      {like}
+                    </Typography>
+                  </>
+                )}
+              </Box>
               <h1 className="hero__heading">
                 <span>
                   Good {timeOfDay}! <br /> This is
                 </span>
                 <span className="hero__name">Franklin</span>
               </h1>
-              <div className="hero__image">
-                <img
-                  src={profileImg}
-                  alt="Profile image"
-                  style={{
-                    objectFit: "cover",
-                    border: "2px double",
-                    mixBlendMode: "soft-light",
-                    height: "100%",
-                    width: "100%",
-                    minHeight: "50px",
-                  }}
-                />
-              </div>
-              <div className="hero__info">
-                <PText>
-                  The Full-stack developer and Game developer
-                  you've been looking for!!
-                </PText>
-                <Button
-                  btnLinks="projects"
-                  btnText="Check out my Projects"
-                  outline={false}
-                />
-              </div>
+              <Carousel>
+                <div>
+                  <div className="hero__image">
+                    <img
+                      loading="lazy"
+                      src={profileImg}
+                      alt="Profile image"
+                      style={{
+                        objectFit: "cover",
+                        border: "2px double",
+                        mixBlendMode: "soft-light",
+                        height: "100%",
+                        width: "100%",
+                        minHeight: "50px",
+                      }}
+                    />
+                  </div>
+                  <div className="hero__info">
+                    <PText>
+                      The MERN stack developer and Game developer you've been
+                      looking for!!!
+                    </PText>
+                    <Button
+                      btnLinks="projects"
+                      btnText="Check out my Projects"
+                      outline={false}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <img
+                    src={expert}
+                    loading="lazy"
+                    style={{
+                      objectFit: "cover",
+                      border: "2px double",
+                      mixBlendMode: "soft-light",
+                      height: "100%",
+                      width: "100%",
+                      minHeight: "50px",
+                    }}
+                  />
+                  <div
+                    style={{
+                      background: "#111",
+                      textAlign: "center",
+                      padding: "1rem",
+                    }}
+                  >
+                    <PText>
+                      Expert in building e-Commerce, Blogs, Frontend & Backend{" "}
+                    </PText>
+                  </div>
+                </div>
+                <div>
+                  <img
+                    src={call}
+                    loading="lazy"
+                    style={{
+                      objectFit: "cover",
+                      border: "2px double",
+                      mixBlendMode: "soft-light",
+                      height: "100%",
+                      width: "100%",
+                      minHeight: "50px",
+                    }}
+                  />
+                    <PText>Give that job to the right hands.</PText>
+                    <Button
+                      btnLinks="contact"
+                      btnText="Call Me Now!"
+                      outline={false}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    />
+                </div>
+              </Carousel>
             </div>
 
             <div

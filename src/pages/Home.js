@@ -6,25 +6,34 @@ import ProjectSection from "../components/ProjectSection";
 import ContactBanner from './../components/ContactBanner';
 import TestimonialsSec from './../components/TestimonialsSec';
 import '../App.css'
+import BlogIndex from '../components/BlogIndex';
+import ShopIndex from '../components/ShopIndex';
 
-function Home() {
-    return (
-      <div>
-        <HeroSection />
-        <AboutSection />
-        <ServiceSection/>
-        <ProjectSection/>
-        <TestimonialsSec />
-        <ContactBanner/>
+function Home({ products, handleAddToCart, cart, totalItems }) {
+  return (
+    <div>
+      <HeroSection />
+      <AboutSection />
+      <ServiceSection />
+      <BlogIndex />
+      <ShopIndex
+        products={products}
+        handleAddToCart={handleAddToCart}
+        cart={cart}
+        totalItems={totalItems}
+      />
+      <ProjectSection />
+      <TestimonialsSec />
+      <ContactBanner />
 
-        <div id="cursorMeter">
-          <div id="percent">Page Scrolled</div>
-          <div id="scollPath">
-            <div id="progressBar"></div>
-          </div>
+      <div id="cursorMeter">
+        <div id="percent">Page Scrolled</div>
+        <div id="scollPath">
+          <div id="progressBar"></div>
         </div>
       </div>
-    );
+    </div>
+  );
 }
 
 export default Home
