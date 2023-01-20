@@ -17,13 +17,13 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
     const paystack = new PaystackPop();
 
     paystack.newTransaction({
-      key: "pk_test_991ef6cfc641dd4b948b2cac759d00d34d3ef116",
+      key: process.env.REACT_APP_PAYSTACK,
       amount: checkoutToken.live.subtotal.raw * 100,
       email: shippingData.email,
       onSuccess(transaction) {
         let message = `Payment Completed! Transaction reference ${transaction.reference}`;
         console.log(message);
-        handleFormPayment()
+        handleFormPayment();
         window.location.replace("/thanks_for_the_purchase");
       },
       onCancel() {
@@ -58,14 +58,14 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
 // console.log(orderData);
     const handleFormPayment = async() => {
       await axios
-        .post("http://localhost:5000/checkout/", orderData, {
+        .post("https://my-react-site-api.onrender.com/checkout/", orderData, {
           headers: {
             "Content-type": "application/json",
           },
         })
         .then((res) => {
           // alert("Email Sent Successfully");
-          console.log('Email Sent Successfully')
+          console.log("Email Sent Successfully");
           console.log(res);
           if (res.data.status === "success") {
             alert("Message Sent.");

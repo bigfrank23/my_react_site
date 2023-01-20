@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000/api/" });
+const API = axios.create({
+  baseURL: "https://my-react-site-api.onrender.com/api/",
+});
 
 const myApi = API;
 myApi.interceptors.request.use((req) => {

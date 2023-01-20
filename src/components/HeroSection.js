@@ -155,7 +155,9 @@ function HeroSection() {
   const [hideBtn, setHideBtn] = useState(false)
 
   const handleClick = async() => {
-    const res = await axios.post("http://localhost:5000/api/likes/");
+    const res = await axios.post(
+      "https://my-react-site-api.onrender.com/api/likes/"
+    );
     try {
       // setLike(res.data.likeResult)
       console.log(res.data);
@@ -168,7 +170,9 @@ function HeroSection() {
   
   useEffect(()=> {
     const getLikes = async() => {
-      const res = await axios.get("http://localhost:5000/api/likes/");
+      const res = await axios.get(
+        "https://my-react-site-api.onrender.com/api/likes/"
+      );
       // setLike(res.data.likeRes)
       setLike(Object.values(res.data).map(a=> a.likes));
       // console.log(Object.values(res.data).map(a=> a.likes));
@@ -189,7 +193,7 @@ function HeroSection() {
                   <ul>
                     <li>
                       <a
-                        href="https://www.linkedin.com/in/franklin-ezeyim-5694051a6/"
+                        href="https://www.linkedin.com/in/franklin-ezeyim/"
                         target="_blank"
                         rel="noreffer"
                       >
@@ -207,7 +211,7 @@ function HeroSection() {
                     </li>
                     <li>
                       <a
-                        href="https://api.whatsapp.com/send?phone=+2348135488233"
+                        href="https://wa.me/2348135488233"
                         target="_blank"
                         rel="noreffer"
                       >

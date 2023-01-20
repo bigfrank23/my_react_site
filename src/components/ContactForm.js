@@ -65,7 +65,7 @@ function ContactForm() {
       const body = { email, message, name, location };
       try {
         const res = await axios.post(
-          "http://localhost:5000/api/contact/",
+          "https://my-react-site-api.onrender.com/api/contact/",
           body,
           { headers: { "Content-type": "application/json" } }
         );

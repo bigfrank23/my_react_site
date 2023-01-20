@@ -18,6 +18,7 @@ import axios from "axios";
 import Spinner from './../../components/Spinner';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import moment from "moment";
+import { myApi } from "../../components/requestMethod";
 
 const user = JSON.parse(localStorage.getItem("profile"));
 export default function Blog() {
@@ -35,8 +36,8 @@ export default function Blog() {
    
    useEffect(() => {
      async function getItems() {
-       const res = await axios.get(
-         `http://localhost:5000/api/posts?page=${currentPage}`
+       const res = await myApi.get(
+         `/posts?page=${currentPage}`
        );
        setIsLoading(false)
        setLoadMore(false)
@@ -54,8 +55,8 @@ export default function Blog() {
 
    const findUser = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/auth/" + JSON.parse(localStorage.getItem("profile"))?.result._id
+      const res = await myApi.get(
+        "/auth/" + JSON.parse(localStorage.getItem("profile"))?.result._id
       );
       // localStorage.setItem("profilePic", res.data.profilePic);
       // console.log(res);

@@ -37,8 +37,8 @@ const CreatePost = ({ children }) => {
 
   const findUser = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/auth/" + JSON.parse(localStorage.getItem("profile"))?.result._id
+      const res = await myApi.get(
+        "/auth/" + JSON.parse(localStorage.getItem("profile"))?.result._id
       );
       setGetUser(res?.data);
       // setIsLoading(false);

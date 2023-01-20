@@ -34,6 +34,7 @@ import https from 'https'
 import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from "uuid";
 import socketIOClient from "socket.io-client";
+import { myApi } from '../../components/requestMethod';
 
 
 const user = JSON.parse(localStorage.getItem("profile"));
@@ -106,7 +107,7 @@ const SinglePost = () => {
       // headers.append("Access-Control-Allow-Credentials", "true");
       headers.append("Accept", "application/json");
       // Increment the view count if the cookie is not present
-      fetch(`http://localhost:5000/api/posts/${id}/viewer`, {
+      fetch(`https://my-react-site-api.onrender.com/api/posts/${id}/viewer`, {
         method: "GET",
         mode: "cors",
         redirect: "follow",
@@ -118,7 +119,7 @@ const SinglePost = () => {
   
 
   const getPost = async () => {
-    const res = await axios.get("http://localhost:5000/api/posts/" + id);
+    const res = await myApi.get("/posts/" + id);
     setPost(res.data);
     setComments(res.data.comments);
     // setViews(id);
@@ -129,8 +130,8 @@ const SinglePost = () => {
 
   const findUser = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/auth/" +
+      const res = await myApi.get(
+        "/auth/" +
           JSON.parse(localStorage.getItem("profile"))?.result._id
       );
       // localStorage.setItem("profilePic", res.data.profilePic);
@@ -147,7 +148,7 @@ const SinglePost = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete("http://localhost:5000/api/posts/" + id);
+      await myApi.delete("/posts/" + id);
 
       setIsSuccess(true);
 
@@ -162,7 +163,7 @@ const SinglePost = () => {
   //For recommended posts
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("http://localhost:5000/api/posts/all");
+      const res = await myApi.get("/posts/all");
       setPosts(res.data);
       setIsLoading(false);
     };
@@ -180,7 +181,7 @@ const SinglePost = () => {
 
   const likeHandler = (id) => {
     if(user?.result){
-      fetch("http://localhost:5000/api/posts/like", {
+      fetch("https://my-react-site-api.onrender.com/api/posts/like", {
         method: "put",
         headers: {
           "Content-Type": "application/json",
@@ -217,7 +218,7 @@ const SinglePost = () => {
   };
 
   const unlikeHandler = (id) => {
-    fetch("http://localhost:5000/api/posts/unlike", {
+    fetch("https://my-react-site-api.onrender.com/api/posts/unlike", {
       method: "put",
       headers: {
         "Content-Type": "application/json",
@@ -268,14 +269,14 @@ const SinglePost = () => {
         newPost.commentImage = filename;
 
         try {
-          await axios.post("http://localhost:5000/api/upload", formData);
+          await myApi.post("/upload", formData);
         } catch (error) {
           console.log(error);
         }
       }
 
-      const response = await axios.post(
-        `http://localhost:5000/api/posts/${id}/my_comments`,
+      const response = await myApi.post(
+        `/posts/${id}/my_comments`,
         newPost
       );
       // Update the comments array with the new comment
@@ -327,9 +328,9 @@ const SinglePost = () => {
 
 
   const handleLikeComment = (commentId) => {
-    axios
+    myApi
       .patch(
-        `http://localhost:5000/api/posts/${id}/comments/${commentId}?action=like`,
+        `/posts/${id}/comments/${commentId}?action=like`,
         { userId: user?.result?._id },
         {
           headers: {
@@ -353,9 +354,9 @@ const SinglePost = () => {
 
 
   const handleUnlikeComment = (commentId) => {
-    axios
+    myApi
       .patch(
-        `http://localhost:5000/api/posts/${id}/comments/${commentId}?action=unlike`,
+        `/posts/${id}/comments/${commentId}?action=unlike`,
         { userId: user?.result?._id },
         {
           headers: {

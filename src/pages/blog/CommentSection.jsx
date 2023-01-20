@@ -60,7 +60,7 @@ const CommentSection = ({
   const [getUser, setGetUser] = useState([]);
   const [fileData, setFileData] = useState("");
 
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://my-react-site-api.onrender.com/images/";
 
   const [noOfElement, setNoOfElement] = useState(4);
 
@@ -71,7 +71,7 @@ const CommentSection = ({
   const findUser = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/auth/" +
+        "https://my-react-site-api.onrender.com/api/auth/" +
           JSON.parse(localStorage.getItem("profile"))?.result._id
       );
       setGetUser(res.data);
