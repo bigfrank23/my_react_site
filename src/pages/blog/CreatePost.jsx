@@ -9,9 +9,6 @@ import axios from 'axios'
 import Success from "../../components/alerts/Success";
 import './createPost.css'
 import Fail from "../../components/alerts/Fail";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import {CKEditor }from "@ckeditor/ckeditor5-react";
-import parse from "html-react-parser";
 import { publicRequest } from "../../components/requestMethod";
 import FileBase from 'react-file-base64'
 import CircularProgress from "@mui/material/CircularProgress";
@@ -169,16 +166,6 @@ const CreatePost = ({ children }) => {
                 value={data?.desc}
                 onChange={handleChange("desc")}
               />
-              <div className="editor text-dark" style={{ display: "none" }}>
-                <CKEditor
-                  editor={ClassicEditor}
-                  data={text}
-                  onChange={(event, editor) => {
-                    const data = editor.getData();
-                    setText(data);
-                  }}
-                />
-              </div>
             </Form.Group>
             <Button
               size="small"

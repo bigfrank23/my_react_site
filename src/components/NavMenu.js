@@ -197,7 +197,8 @@ function NavMenu({ totalItems }) {
       setOpen(false);
       setSignupModalOpen(false);
       // window.location.replace('/')
-      history.push("/");
+      window.location.reload()
+      // history.push("/");
     } catch (error) {
       console.log(error);
     }

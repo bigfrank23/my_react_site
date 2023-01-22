@@ -16,9 +16,6 @@ import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrow
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import React, {useRef, useState} from 'react'
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import {CKEditor }from "@ckeditor/ckeditor5-react";
-import parse from "html-react-parser";
 import ClearIcon from "@mui/icons-material/Clear";
 import moment from "moment";
 import './CommentSection.css'
