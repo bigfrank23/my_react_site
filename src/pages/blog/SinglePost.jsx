@@ -28,12 +28,9 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import PersonIcon from "@mui/icons-material/Person";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ClearIcon from "@mui/icons-material/Clear";
-import { LikeButton } from '@lyket/react';
-import AppC from './AppC';
-import https from 'https'
 import { useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from "uuid";
-import socketIOClient from "socket.io-client";
+// import socketIOClient from "socket.io-client";
 import { myApi } from '../../components/requestMethod';
 
 

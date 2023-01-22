@@ -88,7 +88,7 @@ function ProjectSection() {
               }}
             >
               {projects.map((project, index) => {
-                if (index >= 5)
+                if (index >= 0)
                 return (
                   <SwiperSlide key={project.id}>
                     <ProjectItem

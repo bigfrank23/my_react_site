@@ -22,6 +22,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 
 import '../pages/blog/createPost.css'
+import {myApi} from '../components/requestMethod'
 
 const ellipse = {
   display: "-webkit-box !important",
@@ -38,7 +39,7 @@ export default function BlogIndex() {
 
    useEffect(() => {
      const fetchPosts = async () => {
-       const res = await axios.get("http://localhost:5000/api/posts/all");
+       const res = await myApi.get("/posts/all");
        setPosts(res.data);
        setIsLoading(false);
      };
@@ -51,75 +52,77 @@ export default function BlogIndex() {
       <div className="mt-5">
         <SectionTitle subheading="Some Recent Blog" heading="Blog" />
       </div>
-      <Grid container spacing={2}>
-        {slice.map((item, i) => (
-          <Grid item xs={12} sm={6} md={4} key={i}>
-            <Card sx={{ maxWidth: 345, margin: {xs: 'auto', sm: 0} }} elevation={5}>
-              <CardHeader
-                avatar={
-                  // <Avatar sx={{ bgcolor: red[500] }} aria-label={item.label}>
-                  //   E
-                  // </Avatar>
-                  <Avatar
-                    sx={{ margin: "auto" }}
-                    alt={user?.result?.familyName}
-                    src={user?.result?.imageUrl || item?.profilePic}
+      {!posts.length ? (<h2 style={{color: "#fff", textAlign: 'center'}}>No Post Yet. Signin to Add Post!</h2>) : (
+        <Grid container spacing={2}>
+          {slice.map((item, i) => (
+            <Grid item xs={12} sm={6} md={4} key={i}>
+              <Card sx={{ maxWidth: 345, margin: {xs: 'auto', sm: 0} }} elevation={5}>
+                <CardHeader
+                  avatar={
+                    // <Avatar sx={{ bgcolor: red[500] }} aria-label={item.label}>
+                    //   E
+                    // </Avatar>
+                    <Avatar
+                      sx={{ margin: "auto" }}
+                      alt={user?.result?.familyName}
+                      src={user?.result?.imageUrl || item?.profilePic}
+                    >
+                      {user?.result?.familyName?.charAt(0) ||
+                        user?.result?.firstName?.charAt(0)}
+                    </Avatar>
+                  }
+                  action={
+                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                      <VisibilityOutlinedIcon sx={{ color: "#555" }} />
+                      <Typography textAlign="center" variant="caption">
+                        {item?.views?.length}
+                      </Typography>
+                    </Box>
+                    // <IconButton aria-label="settings">
+                    //   <MoreVertIcon />
+                    // </IconButton>
+                  }
+                  title={item.title}
+                  subheader={moment(item.createdAt).fromNow()}
+                />
+                <CardMedia
+                  component="img"
+                  height="194"
+                  image={item.avatar || dummyImg}
+                  alt={item.title}
+                />
+                <CardContent>
+                  <Typography
+                    component="p"
+                    className="ellipse"
+                    variant="body2"
+                    color="text.secondary"
                   >
-                    {user?.result?.familyName?.charAt(0) ||
-                      user?.result?.firstName?.charAt(0)}
-                  </Avatar>
-                }
-                action={
-                  <Box sx={{ display: "flex", flexDirection: "column" }}>
-                    <VisibilityOutlinedIcon sx={{ color: "#555" }} />
-                    <Typography textAlign="center" variant="caption">
-                      {item?.views?.length}
-                    </Typography>
-                  </Box>
-                  // <IconButton aria-label="settings">
-                  //   <MoreVertIcon />
-                  // </IconButton>
-                }
-                title={item.title}
-                subheader={moment(item.createdAt).fromNow()}
-              />
-              <CardMedia
-                component="img"
-                height="194"
-                image={item.avatar || dummyImg}
-                alt={item.title}
-              />
-              <CardContent>
-                <Typography
-                  component="p"
-                  className="ellipse"
-                  variant="body2"
-                  color="text.secondary"
+                    {item.desc}
+                  </Typography>
+                </CardContent>
+                <CardActions
+                  disableSpacing
+                  sx={{ display: "flex", justifyContent: "center" }}
                 >
-                  {item.desc}
-                </Typography>
-              </CardContent>
-              <CardActions
-                disableSpacing
-                sx={{ display: "flex", justifyContent: "center" }}
-              >
-                {/* <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton aria-label="share">
-                    <ShareIcon />
-                  </IconButton> */}
-                <Link
-                  to={`/fullDetail/${item._id}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button variant="outlined">Read more</Button>
-                </Link>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+                  {/* <IconButton aria-label="add to favorites">
+                      <FavoriteIcon />
+                    </IconButton>
+                    <IconButton aria-label="share">
+                      <ShareIcon />
+                    </IconButton> */}
+                  <Link
+                    to={`/fullDetail/${item._id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button variant="outlined">Read more</Button>
+                  </Link>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </div>
     // </div>
   );

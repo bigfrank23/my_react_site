@@ -12,6 +12,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import Carousel from 'nuka-carousel';
+import MovingComponent from "react-moving-text";
 
 
 const HeroStyles = styled.div`
@@ -282,7 +283,18 @@ function HeroSection() {
                 <span>
                   Good {timeOfDay}! <br /> This is
                 </span>
-                <span className="hero__name">Franklin</span>
+                <MovingComponent
+                  className="hero__name"
+                  type="swing"
+                  duration="1000ms"
+                  delay="0s"
+                  direction="normal"
+                  timing="ease"
+                  iteration="infinite"
+                  fillMode="none"
+                >
+                  Franklin
+                </MovingComponent>
               </h1>
               <Carousel>
                 <div>
@@ -308,7 +320,19 @@ function HeroSection() {
                     </PText>
                     <Button
                       btnLinks="projects"
-                      btnText="Check out my Projects"
+                      btnText={
+                        <MovingComponent
+                          type="shakeMix"
+                          duration="2000ms"
+                          delay="0s"
+                          direction="normal"
+                          timing="ease"
+                          iteration="infinite"
+                          fillMode="none"
+                        >
+                          Check Out My Projects
+                        </MovingComponent>
+                      }
                       outline={false}
                       style={{ display: "flex", justifyContent: "center" }}
                     />
@@ -352,13 +376,25 @@ function HeroSection() {
                       minHeight: "50px",
                     }}
                   />
-                    <PText>Give that job to the right hands.</PText>
-                    <Button
-                      btnLinks="contact"
-                      btnText="Call Me Now!"
-                      outline={false}
-                      style={{ display: "flex", justifyContent: "center" }}
-                    />
+                  <PText>Give that job to the right hands.</PText>
+                  <Button
+                    btnLinks="contact"
+                    btnText={
+                      <MovingComponent
+                        type="shakeMix"
+                        duration="2000ms"
+                        delay="0s"
+                        direction="normal"
+                        timing="ease"
+                        iteration="infinite"
+                        fillMode="none"
+                      >
+                        Call Me Now!
+                      </MovingComponent>
+                    }
+                    outline={false}
+                    style={{ display: "flex", justifyContent: "center" }}
+                  />
                 </div>
               </Carousel>
             </div>
