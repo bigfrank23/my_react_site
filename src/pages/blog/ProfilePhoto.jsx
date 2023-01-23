@@ -7,6 +7,7 @@ import axios from 'axios';
 const user = JSON.parse(localStorage.getItem("profile"));
 const ProfilePhoto = () => {
     const [fileData, setFileData] = useState('')
+    const [success, setSuccess] = useState('')
 
     const imgTagRef = useRef('')
     const inputTagRef = useRef('')
@@ -15,16 +16,19 @@ const ProfilePhoto = () => {
        e.preventDefault();
 
        try {
-         await axios.put(
-           "http://localhost:5000/api/auth/" +
+        const res = await axios.put(
+           "https://my-react-site-api.onrender.com/api/auth/" +
              JSON.parse(localStorage.getItem("profile")).result._id,
            { profilePic: fileData }
          );
-
+         setSuccess(res.data)
+         
+         console.log(res.data);
          setFileData('')
-
-       } catch (error) {
-         console.log(error);
+         
+        } catch (error) {
+          console.log(error);
+          setSuccess(error)
         //  setError(true);
         //  setTimeout(() => {
         //    setError(false);
@@ -93,7 +97,9 @@ const ProfilePhoto = () => {
           >
             upload
           </Button>
+          <Typography variant='caption' mt={1} textAlign='center'>{success}</Typography>
         </Box>
+
       </Paper>
     </Container>
   );

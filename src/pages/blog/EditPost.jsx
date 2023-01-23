@@ -28,7 +28,9 @@ const EditPost = ({ match }) => {
   //for update
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("http://localhost:5000/api/posts/" + id);
+      const res = await axios.get(
+        "https://my-react-site-api.onrender.com/api/posts/" + id
+      );
       setUpdatedPost(res.data);
       setIsLoading(false);
     //   console.log(res.data);
@@ -56,7 +58,7 @@ const EditPost = ({ match }) => {
       // console.log(id);
 
       const res = await axios.put(
-        "http://localhost:5000/api/posts/" + id,
+        "https://my-react-site-api.onrender.com/api/posts/" + id,
         formData
       );
     //   const res = await fetch(

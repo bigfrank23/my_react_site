@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import AddShoppingCart from "@mui/icons-material/AddShoppingCart";
 import useStyles from "./styles";
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton, Button, Box, } from "@mui/material";
+import { Card, CardMedia, CardContent, CardActions, Typography, Button} from "@mui/material";
 import { commerce } from "../../../lib/commerce";
 import { useParams } from "react-router-dom";
 
-import img2 from "../../../../src/phone.webp";
+// import img2 from "../../../../src/phone.webp";
 
 const Product = () => {
   const classes = useStyles();

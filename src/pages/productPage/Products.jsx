@@ -1,11 +1,11 @@
 import { Button, Pagination } from '@mui/material';
 import React from 'react'
-import img1 from "../../../src/headset.jpg";
+// import img1 from "../../../src/headset.jpg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import SectionTitle from '../../components/SectionTitle';
 import { Link } from 'react-router-dom';
-import { commerce } from './../../lib/commerce';
-import { useEffect, useState } from 'react';
+// import { commerce } from './../../lib/commerce';
+// import { useEffect, useState } from 'react';
 
 const Products = ({products, handleAddToCart}) => {
   // const items = [1, 2, 3, 4]

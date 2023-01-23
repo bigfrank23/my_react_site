@@ -100,7 +100,7 @@ const SinglePost = () => {
     } else {
       var headers = new Headers();
       headers.append("Content-Type", "application/json");
-      headers.append("Access-Control-Allow-Origin", "http://localhost:3000");
+      headers.append("Access-Control-Allow-Origin", "https://my-react-site-nine.vercel.app/");
       // headers.append("Access-Control-Allow-Credentials", "true");
       headers.append("Accept", "application/json");
       // Increment the view count if the cookie is not present
@@ -719,28 +719,28 @@ const SinglePost = () => {
                 {user?.result && (
                   <div className="detail_share d-flex">
                     <FacebookShareButton
-                      url={"#"}
-                      quote={"post.title"}
+                      url={"https://my-react-site-nine.vercel.app/fullDetail/" + post._id}
+                      quote={post.title}
                       hashtag={"#newpost"}
-                      description={"post.desc"}
+                      description={post.desc}
                       className="Demo__some-network__share-button"
                     >
                       <FacebookIcon size={32} round />
                     </FacebookShareButton>
                     <TwitterShareButton
-                      url={"#"}
-                      quote={"post.title"}
+                      url={"https://my-react-site-nine.vercel.app/fullDetail/" + post._id}
+                      quote={post.title}
                       hashtag={"#newpost"}
-                      description={"post.desc"}
+                      description={post.desc}
                       className="Demo__some-network__share-button"
                     >
                       <TwitterIcon size={32} round />
                     </TwitterShareButton>
                     <LinkedinShareButton
-                      url={"#"}
-                      quote={"post.title"}
+                      url={"https://my-react-site-nine.vercel.app/fullDetail/" + post._id}
+                      quote={post.title}
                       hashtag={"#newpost"}
-                      description={"post.desc"}
+                      description={post.desc}
                       className="Demo__some-network__share-button"
                     >
                       <LinkedinIcon size={32} round />

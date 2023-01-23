@@ -9,19 +9,19 @@ import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {NavLink, useHistory, useLocation} from 'react-router-dom'
 import styled from 'styled-components';
 import decode from "jwt-decode";
 
 import { GoogleLogin } from "react-google-login";
 import {gapi} from "gapi-script";
-import axios from "axios";
+// import axios from "axios";
 import Fail from "./alerts/Fail";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
-import { Axios, publicRequest } from "./requestMethod";
+import {myApi} from './requestMethod'
 
 const NvaMenuStyles = styled.div`
   position: fixed;
@@ -121,7 +121,8 @@ const style = {
   bgcolor: "background.paper",
   // border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  // p: 4,
+  padding: {xs: '1rem 6.2rem !important', sm: '1rem 6.2rem !important', md: '2rem !important', lg: '2rem !important'}
 };
 
 const initialState = {
@@ -235,8 +236,8 @@ function NavMenu({ totalItems }) {
 
   const findUser = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/auth/" +
+      const res = await myApi.get(
+        "/auth/" +
           JSON.parse(localStorage.getItem("profile"))?.result._id
       );
       localStorage.setItem("profilePic", res.data.profilePic);
@@ -248,8 +249,8 @@ function NavMenu({ totalItems }) {
 
   useEffect(() => {
     const getProfilePic = async () => {
-      const res = await axios.get(
-        "http://localhost:5000/api/auth/" + user?.result?._id
+      const res = await myApi.get(
+        "/auth/" + user?.result?._id
       );
       setProfileImage(res.data);
       findUser();
@@ -267,7 +268,7 @@ function NavMenu({ totalItems }) {
     e.preventDefault();
 
     try {
-      const res = await publicRequest.post("/signin", formData);
+      const res = await myApi.post("/auth/signin", formData);
       setFormData(res.data);
       localStorage.setItem("profile", JSON.stringify(res.data));
       setOpen(false);
@@ -294,7 +295,7 @@ function NavMenu({ totalItems }) {
     firstName: Yup.string().required("First Name is required"),
     lastName: Yup.string()
       .required("Last Name is required")
-      .min(6, "Last Name must be at least 6 characters")
+      .min(3, "Last Name must be at least 3 characters")
       .max(20, "Last Name must not exceed 20 characters"),
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
@@ -318,10 +319,10 @@ function NavMenu({ totalItems }) {
     // validateOnChange: false,
     // validateOnBlur: false,
     onSubmit: async (data) => {
-      // console.log(JSON.stringify(data, null, 2));
+      console.log(JSON.stringify(data, null, 2));
       try {
-        const res = await axios.post(
-          "http://localhost:5000/api/auth/signup",
+        const res = await myApi.post(
+          "/auth/signup",
           data
         );
         localStorage.setItem("profile", JSON.stringify(res.data));
@@ -662,6 +663,7 @@ function NavMenu({ totalItems }) {
         BackdropProps={{
           timeout: 500,
         }}
+        // sx={{padding: {xs: '0 5rem', sm: '0 5rem', md: '0 2rem', lg: '0 2rem'}}}
       >
         <Fade in={signupModalOpen}>
           <Box sx={style}>
@@ -687,7 +689,7 @@ function NavMenu({ totalItems }) {
               >
                 Fill in your credetials
               </Typography>
-              <Box display="flex" gap="1rem" marginBottom="1rem">
+              <Box sx={{display: {xs:'block', sm:"block", md: 'flex', lg: 'flex'}, gap: '1rem', marginBottom: '1rem'}}>
                 <div
                   style={{
                     display: "flex",
