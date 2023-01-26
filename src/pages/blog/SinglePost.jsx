@@ -100,7 +100,7 @@ const SinglePost = () => {
     } else {
       var headers = new Headers();
       headers.append("Content-Type", "application/json");
-      headers.append("Access-Control-Allow-Origin", "https://my-react-site-nine.vercel.app/");
+      headers.append("Access-Control-Allow-Origin");
       // headers.append("Access-Control-Allow-Credentials", "true");
       headers.append("Accept", "application/json");
       // Increment the view count if the cookie is not present
@@ -108,7 +108,6 @@ const SinglePost = () => {
         method: "GET",
         mode: "cors",
         redirect: "follow",
-        credentials: "include",
         headers: headers,
       }).catch((err) => console.error(err));
     }
@@ -681,7 +680,7 @@ const SinglePost = () => {
                       {post?.comments?.length}
                     </span>
                   </div>
-                  {!post?.likes.length ||
+                  {!post?.likes?.length ||
                   !post?.likes
                     ?.map((v) => v.userId)
                     ?.includes(user?.result?._id || user?.result?.googleId) ? (

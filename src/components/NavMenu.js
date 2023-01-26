@@ -122,7 +122,7 @@ const style = {
   // border: '2px solid #000',
   boxShadow: 24,
   // p: 4,
-  padding: {xs: '1rem 6.2rem !important', sm: '1rem 6.2rem !important', md: '2rem !important', lg: '2rem !important'}
+  padding: {xs: '1rem 8.2rem !important', sm: '1rem 8.2rem !important', md: '2rem !important', lg: '2rem !important'}
 };
 
 const initialState = {
