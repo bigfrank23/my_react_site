@@ -100,7 +100,7 @@ const SinglePost = () => {
     } else {
       var headers = new Headers();
       headers.append("Content-Type", "application/json");
-      headers.append("Access-Control-Allow-Origin");
+      headers.append("Access-Control-Allow-Origin", 'true');
       // headers.append("Access-Control-Allow-Credentials", "true");
       headers.append("Accept", "application/json");
       // Increment the view count if the cookie is not present

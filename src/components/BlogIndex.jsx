@@ -42,9 +42,11 @@ export default function BlogIndex() {
        const res = await myApi.get("/posts/all");
        setPosts(res.data);
        setIsLoading(false);
+      //  console.log(res.data)
      };
      fetchPosts();
    }, []);
+
 
   return (
     // <div className="container-fluid" style={{background: 'url("https://img.freepik.com/free-photo/white-brush-stroke-texture-background_53876-132775.jpg?t=st=1657194230~exp=1657194830~hmac=a96d7825071211996733ca07daf464c736e73d542cf4370475d8af6265bd95be&w=900")', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
@@ -75,7 +77,7 @@ export default function BlogIndex() {
                     <Box sx={{ display: "flex", flexDirection: "column" }}>
                       <VisibilityOutlinedIcon sx={{ color: "#555" }} />
                       <Typography textAlign="center" variant="caption">
-                        {item?.views?.length}
+                        {item?.views}
                       </Typography>
                     </Box>
                     // <IconButton aria-label="settings">

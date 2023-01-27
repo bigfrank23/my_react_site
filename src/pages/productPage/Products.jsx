@@ -1,5 +1,5 @@
 import { Button, Pagination } from '@mui/material';
-import React from 'react'
+import React, { useState } from 'react'
 // import img1 from "../../../src/headset.jpg";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import SectionTitle from '../../components/SectionTitle';
@@ -30,13 +30,35 @@ const Products = ({products, handleAddToCart}) => {
 
   console.log(products)
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 5;
+
+  // Get current products
+  const indexOfLastComment = currentPage * productsPerPage;
+  const indexOfFirstComment = indexOfLastComment - productsPerPage;
+  const currentProducts = products.slice(
+    indexOfFirstComment,
+    indexOfLastComment
+  );
+
+  // Get page numbers
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page);
+    window.scrollTo(0,0)
+  };
+
   return (
     <section style={{ backgroundColor: "#dce2e5", paddingTop: "5rem" }}>
       <div className="mt-5" style={{ color: "coral" }}>
         <SectionTitle heading="All Product" subheading="stuffs in stock" />
       </div>
       <div className="container py-5">
-        {products?.map((product) => (
+        {currentProducts?.map((product) => (
           <div className="row justify-content-center mb-3">
             <div className="col-md-12 col-xl-10">
               <div className="card shadow-0 border rounded-3">
@@ -90,7 +112,9 @@ const Products = ({products, handleAddToCart}) => {
                       </div>
                       <p
                         className="text-truncate mb-4 mb-md-0"
-                        dangerouslySetInnerHTML={{ __html: product.description }}
+                        dangerouslySetInnerHTML={{
+                          __html: product.description,
+                        }}
                       />
                     </div>
                     <div className="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
@@ -104,7 +128,10 @@ const Products = ({products, handleAddToCart}) => {
                       </div>
                       <h6 className="text-success">1000NGN shipping fee</h6>
                       <div className="d-flex flex-column mt-4">
-                        <Link to={`/product/${product?.id}`} style={{ textDecoration: "none" }}>
+                        <Link
+                          to={`/product/${product?.id}`}
+                          style={{ textDecoration: "none" }}
+                        >
                           <Button
                             variant="contained"
                             // endIcon={<AddShoppingCartIcon />}
@@ -119,7 +146,7 @@ const Products = ({products, handleAddToCart}) => {
                           endIcon={<AddShoppingCartIcon />}
                           color="secondary"
                           sx={{ marginTop: 1 }}
-                          onClick={()=>handleAddToCart(product.id, 1)}
+                          onClick={() => handleAddToCart(product.id, 1)}
                         >
                           Add to cart
                         </Button>
@@ -136,7 +163,9 @@ const Products = ({products, handleAddToCart}) => {
       <div className="pagination justify-content-center">
         <Pagination
           sx={{ background: "#fff", p: 1, borderRadius: "5px", m: 2 }}
-          count={10}
+          count={pageNumbers.length}
+          page={currentPage}
+          onChange={handlePageChange}
           variant="outlined"
           shape="rounded"
           color="secondary"

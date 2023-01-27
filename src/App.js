@@ -30,9 +30,11 @@ const App = () => {
  const [order, setOrder] = useState({});
  const [errorMessage, setErrorMessage] = useState("");
 
+
   const fetchProducts = async () => {
     const res = await commerce?.products?.list();
     setProducts(res.data);
+    console.log(products.length)
   };
 
  const fetchCart = async() => {
