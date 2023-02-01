@@ -105,25 +105,48 @@ function About() {
             <h2 className="about__heading">A Software/Web Developer</h2>
             <div className="about__info">
               <PText>
-                I'm a full-stack developer with over 3years of experience. Very
-                passionate in developing website and apps.
+                As a full-stack developer, I am driven by a passion for creating
+                innovative and impactful solutions that push the boundaries of
+                what is possible. I have a wealth of experience in a range of
+                technologies and programming languages, including HTML, CSS,
+                JavaScript, React js, Express js, and more. This has allowed me
+                to develop a deep understanding of both front-end and back-end
+                development, as well as the design aspects of web and mobile
+                development.
                 <p>
-                  My career kick started immediately after my internship. I got
-                  an actual job where I worked as the full stack developer,
-                  digital marker and was the team lead
+                  What sets me apart from others is my ability to think
+                  critically and creatively about how technology can be
+                  leveraged to solve complex problems and achieve business
+                  goals. I approach every project with a solutions-focused
+                  mindset, taking the time to understand the unique needs and
+                  objectives of each client before developing a tailored
+                  strategy to help them reach their goals.
                 </p>
                 <p>
-                  I helped deliver the company's toughest project back then and
-                  got promoted
+                  I am constantly seeking out new challenges and opportunities
+                  to learn and grow as a developer. I stay up-to-date with the
+                  latest technologies and industry trends, and I am always
+                  looking for ways to apply new techniques and approaches to my
+                  work. This allows me to bring a fresh perspective to each
+                  project and consistently deliver high-quality results that
+                  meet and exceed client expectations.
                 </p>
                 <p>
-                  I'm open to opportunities where I can leverage my skills and
-                  experience while I help deliever beauty
+                  In addition to my technical expertise, I am a team player with
+                  excellent communication and collaboration skills. I understand
+                  the importance of working closely with clients and other
+                  stakeholders to ensure that projects are completed on time,
+                  within budget, and to the highest standards. I take pride in
+                  my ability to build strong, long-lasting relationships with
+                  clients and partners, and I am committed to providing a high
+                  level of customer service and support at all times.
                 </p>
                 <p>
-                  I'm a fan of sports(most epecially football), music, movies,
-                  video games and entertainment. I love to research,
-                  technologies. I love being around positive people.
+                  Whether you are looking to develop a new website, mobile app,
+                  or any other type of digital solution, I am confident that I
+                  have the skills and experience to help you achieve your goals.
+                  So why wait? Let's work together to bring your vision to life
+                  and create something truly amazing.
                 </p>
                 {/* I love coding and always do my best to get results. I love
                 building games, making interactive apps etc. 
@@ -206,7 +229,10 @@ function About() {
           </div>
           <div className="about__info__item">
             <h1 className="about__info__heading"> Experience </h1>
-            <AboutInfoItem title="2020" items={["Junior Front-End Developer"]} />
+            <AboutInfoItem
+              title="2020"
+              items={["Junior Front-End Developer"]}
+            />
             <AboutInfoItem
               title="2021"
               items={["Mid Developer & Scratch Tutor"]}

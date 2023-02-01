@@ -49,12 +49,13 @@ function ServiceSection() {
                 />
               }
               title="Web development"
-              desc="  I develop good reponsive websites and web apps
-                        with some mind-blowing designs.
-                        Websites and Apps with powerful performance, effective responsiveness, stylish and user-friendly
-                        are ideal. Hence, I enjoy crafting such.
-                        If you have a design, I can create the Front-End and Back-end code for it.
-                        I code from scratch or otherwise."
+              desc=" My websites are designed with user-friendliness and ease of navigation in mind, providing an enjoyable and seamless experience for your customers.
+
+In addition, all of my websites are fully responsive and optimized for all devices, ensuring that your customers can access your website from anywhere, at any time. I also prioritize search engine optimization (SEO) in my website builds, making it easier for your customers to find you online.
+
+My websites are highly customizable, ensuring that they meet your specific needs and preferences. Whether you need to add new features, change the design, or update content, the website can be easily adapted to suit your needs.
+
+Furthermore, I design my websites with user engagement in mind, through features such as interactive forms, blog integration, and social media integration. By fostering engagement, you can build stronger relationships with your customers and grow your business."
             />
             <ServicesSectionItem
               icon={
@@ -64,9 +65,15 @@ function ServiceSection() {
                 />
               }
               title="Game development"
-              desc="For gamers, if you have a game idea you wish to have for yourself or sell
-              hit the contact button now. Meanwhile, I can train your kids on how
-              to code by building simple games of their choice now!"
+              desc="Are you looking for a way to engage and entertain your customers through a custom app or game? Look no further. My app and game development services are designed to provide a unique and enjoyable experience for your users.
+
+With my expertise in user experience and user interface design, I create apps and games that are intuitive and easy to use. I also optimize my creations for different devices and platforms, so your customers can access them from anywhere, at any time.
+
+Not only do my apps and games provide an enjoyable experience, but they also have the potential to drive engagement and increase customer loyalty. With features such as gamification, social media integration, and real-time updates, your customers will have a reason to keep coming back.
+
+Let me bring my expertise in app and game development to your business. Together, we can create a custom app or game that will help you stand out and connect with your customers in a meaningful way.
+
+I look forward to hearing from you and discussing the potential of a custom app or game for your business."
             />
             <ServicesSectionItem
               icon={
@@ -76,7 +83,9 @@ function ServiceSection() {
                 />
               }
               title="Mobile app development"
-              desc="Mobile app development with Ionic. (React native coming pretty soon...)"
+              desc="I specialize in creating user-friendly apps with a strong focus on cross-platform compatibility. Your customers will be able to access your app from any device and operating system, ensuring maximum reach and accessibility.
+
+With a commitment to performance, stability, and scalability, I guarantee that your app will run smoothly and provide a positive user experience. And with the ability to customize your app to meet your unique needs and goals, I can help you stand out and connect with your customers in a meaningful way."
             />
           </div>
         </div>

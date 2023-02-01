@@ -286,7 +286,7 @@ function HeroSection() {
                 <MovingComponent
                   className="hero__name"
                   type="swing"
-                  duration="1000ms"
+                  duration="50000ms"
                   delay="0s"
                   direction="normal"
                   timing="ease"
@@ -323,7 +323,7 @@ function HeroSection() {
                       btnText={
                         <MovingComponent
                           type="shakeMix"
-                          duration="2000ms"
+                          duration="20000ms"
                           delay="0s"
                           direction="normal"
                           timing="ease"
@@ -382,7 +382,7 @@ function HeroSection() {
                     btnText={
                       <MovingComponent
                         type="shakeMix"
-                        duration="2000ms"
+                        duration="20000ms"
                         delay="0s"
                         direction="normal"
                         timing="ease"

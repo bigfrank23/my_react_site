@@ -24,7 +24,7 @@ function ServicesSectionItem({ icon, title, desc }) {
     <ItemStyles>
       <div className="servicesItem__icon">{icon} </div>
       <div className="servicesItem__title">{title}</div>
-      <PText>{desc}</PText>
+      <p style={{color: '#fff', textAlign: 'left', fontSize: '1.2rem'}}>{desc}</p>
     </ItemStyles>
   );
 }
